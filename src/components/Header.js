@@ -14,7 +14,7 @@ const Header = () => {
       <div className="logo-container">
         <img className="logo" src={LOGO_URL} alt="" />
       </div>
-      <div className="nav-items mt-[20px]">
+      <div className="nav-items mt-[25px]">
         <ul>
           <li className="onl_stat">
             Online Status: {onlineStatus ? "✅" : "🔴"}

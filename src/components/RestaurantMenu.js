@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { foodItemImage_URL } from "../utils/constants";
+// import { foodItemImage_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
@@ -8,7 +8,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
-  const [searchText, setSearchText] = useState("");
+  const [showIndex, setShowIndex] = useState(0);
 
   const resInfo = useRestaurantMenu(resId);
 
@@ -48,7 +48,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <h2 className="my-[30px] text-[28px] font-[700]">Menu</h2>
-      <div className="mb-[20px]">
+      {/* <div className="mb-[20px]">
         <input
           className="search-box"
           placeholder="Type here to search"
@@ -71,7 +71,7 @@ const RestaurantMenu = () => {
         >
           Search
         </button>
-      </div>
+      </div> */}
       {/* <ul>
         {itemCards
           ?.filter((menu) => {
@@ -108,10 +108,12 @@ const RestaurantMenu = () => {
             );
           })}
       </ul> */}
-      {categories.map((category) => (
+      {categories?.map((category, index) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
         />
       ))}
     </div>

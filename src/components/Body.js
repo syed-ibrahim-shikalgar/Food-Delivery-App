@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { restaurantsData } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/useContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -29,6 +30,8 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   if (onlineStatus === false) {
     return <h1>Looks like you're offline!! please check your Connection </h1>;
@@ -76,6 +79,15 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Enter your user name here"
+            className="bg-[#1c223c] p-[10px] outline-0 mt-[20px] rounded-[10px]"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="res-container">

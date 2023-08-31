@@ -4,7 +4,7 @@ import { foodItemImage_URL } from "../utils/constants";
 const ItemList = ({ items }) => {
   return (
     <div>
-      {items.map((item) => (
+      {items?.map((item) => (
         <div
           key={item?.card?.info?.id}
           className="flex justify-between p-[1.5rem] border-b-[1px] border-[#7e7a7a]"

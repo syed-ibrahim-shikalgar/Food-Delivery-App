@@ -8,7 +8,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
-  const [showIndex, setShowIndex] = useState(0);
+  const [searchText, setSearchText] = useState("");
 
   const resInfo = useRestaurantMenu(resId);
 
@@ -30,8 +30,6 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  console.log("catergory", categories);
-
   return (
     <div className="menu">
       <div className="menu-heading">
@@ -48,7 +46,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <h2 className="my-[30px] text-[28px] font-[700]">Menu</h2>
-      {/* <div className="mb-[20px]">
+      <div className="mb-[20px]">
         <input
           className="search-box"
           placeholder="Type here to search"
@@ -62,7 +60,7 @@ const RestaurantMenu = () => {
         <button
           className="srch-btn"
           // onClick={() => {
-          //   itemCards?.filter((menu) => {
+          //   return itemCards?.filter((menu) => {
           //     return menu?.card?.info?.name
           //       ?.toLowerCase()
           //       ?.includes(searchText);
@@ -71,7 +69,8 @@ const RestaurantMenu = () => {
         >
           Search
         </button>
-      </div> */}
+      </div>
+
       {/* <ul>
         {itemCards
           ?.filter((menu) => {
@@ -108,12 +107,10 @@ const RestaurantMenu = () => {
             );
           })}
       </ul> */}
-      {categories?.map((category, index) => (
+      {categories?.map((category) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
-          showItems={index === showIndex ? true : false}
-          setShowIndex={() => setShowIndex(index)}
         />
       ))}
     </div>

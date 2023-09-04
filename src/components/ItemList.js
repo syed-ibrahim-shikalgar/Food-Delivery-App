@@ -1,7 +1,15 @@
 import React from "react";
+import { addItem } from "../utils/cartSlice";
 import { foodItemImage_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
 
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items?.map((item) => (
@@ -31,7 +39,12 @@ const ItemList = ({ items }) => {
               src={foodItemImage_URL + item?.card?.info?.imageId}
               alt=""
             />
-            <button className="food_add_btn ">Add</button>
+            <button
+              className="food_add_btn "
+              onClick={() => handleAddItem(item)}
+            >
+              Add
+            </button>
           </div>
         </div>
       ))}
